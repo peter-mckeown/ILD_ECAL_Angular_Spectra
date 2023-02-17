@@ -22,6 +22,7 @@ class PeterProcessor : public marlin::Processor, EventDisplayer {
         EVENT::MCParticle* getLinkedMCParticle(EVENT::ReconstructedParticle* pfo, UTIL::LCRelationNavigator nav);
         dd4hep::rec::Vector3D getBarrelNorm(double phi);
         bool hasEndcapHits(std::vector<EVENT::Cluster*> clusters);
+        bool hasBarrelHits(std::vector<EVENT::Cluster*> clusters); 
     private:
         dd4hep::Detector& _detector = dd4hep::Detector::getInstance();
         int _nEvent{};

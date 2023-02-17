@@ -53,19 +53,31 @@ void PeterProcessor::processEvent(EVENT::LCEvent * event){
         auto clusters = pfo->getClusters();
         if (mc->getPDG() != 22) continue;
         if (clusters.size() != 1) std::cout<<" BEWAAARE, SOMETHING IS SPPOOKY HERE. EVENT: "<<_nEvent<<"    PFO: "<<i+1<<std::endl;
-        if( hasEndcapHits(clusters) ) continue;
+        //if( hasEndcapHits(clusters) ) continue;
 
         Vector3D mom( mc->getMomentum() );
-        //assuming photon doesn't change flight direction (it really shouldn't...)
-        Vector3D ecalNorm = getBarrelNorm( mom.phi() );
 
-        double angle = std::acos( mom.unit()*ecalNorm );
-        
+
         std::cout<<"***PHOTON MOMENTUM***"<<std::endl;
         std::cout<<mom<<std::endl;
-        std::cout<<"***ECAL NORM***"<<std::endl;
-        std::cout<<ecalNorm<<std::endl;
-        std::cout<<"Angle between flight direction and ECAL normal: "<<angle<<" rad ("<<angle*180./M_PI<<" deg)"<<std::endl;
+        
+        if( hasEndcapHits(clusters) == false &&  hasBarrelHits(clusters) == true ){
+            //assuming photon doesn't change flight direction (it really shouldn't...)
+            Vector3D ecalNorm = getBarrelNorm( mom.phi() );
+            std::cout<<"***ECAL NORM***"<<std::endl;
+            std::cout<<ecalNorm<<std::endl;
+            double phi_angle_barrel = std::acos( mom.unit()*ecalNorm );
+            std::cout<<"Barrel Phi angle between flight direction and ECAL normal: "<<phi_angle_barrel<<" rad ("<<phi_angle_barrel*180./M_PI<<" deg)"<<std::endl;
+            double theta_angle_barrel = mom.theta();
+            std::cout<<"Barrel Theta angle from flight direction: "<<theta_angle_barrel<<" rad ("<<theta_angle_barrel*180./M_PI<<" deg)"<<std::endl;
+        }
+        else if( hasEndcapHits(clusters) == true &&  hasBarrelHits(clusters) == false  ){
+            //same for endcap 
+            double phi_angle_endcap = mom.phi();
+            std::cout<<"Endcap Phi angle: "<<phi_angle_endcap<<" rad ("<<phi_angle_endcap*180./M_PI<<" deg)"<<std::endl;            
+            double theta_angle_endcap = mom.theta();
+            std::cout<<"Endcap Theta angle: "<<theta_angle_endcap<<" rad ("<<theta_angle_endcap*180./M_PI<<" deg)"<<std::endl;
+        }
 
         drawDisplay(this, event, draw, mc, clusters);
     }
@@ -114,6 +126,20 @@ bool PeterProcessor::hasEndcapHits(std::vector<EVENT::Cluster*> clusters){
                 std::cout<<cht<<std::endl;
                 return true;
             }
+        }
+    }
+    return false;
+}
+
+bool PeterProcessor::hasBarrelHits(std::vector<EVENT::Cluster*> clusters){
+    for(auto* cluster : clusters){
+        for(auto*hit : cluster->getCalorimeterHits() ){
+            CHT cht( hit->getType() );
+            if (cht.layout() == CHT::barrel){
+                std::cout<<"Hit "<<hit<<" is in the barrel here:"<<std::endl;
+                std::cout<<cht<<std::endl;
+                return true;
+            }            
         }
     }
     return false;
