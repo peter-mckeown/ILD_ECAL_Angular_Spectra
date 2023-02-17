@@ -36,6 +36,6 @@
     </processor>
 
     <processor name="PeterExample" type="PeterProcessor">
-        <parameter name="eventDisplay">false</parameter>
+        <parameter name="eventDisplay">true</parameter>
     </processor>
 </marlin>

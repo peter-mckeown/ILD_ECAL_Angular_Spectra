@@ -21,6 +21,19 @@ PeterProcessor aPeterProcessor ;
 
 PeterProcessor::PeterProcessor() : marlin::Processor("PeterProcessor"), EventDisplayer(this) {}
 
+/*
+void PeterProcessor::init(){
+    marlin::Global::EVENTSEEDER->registerProcessor(this);                                                |        double getTofClosest( EVENT::Cluster* cluster, EVENT::Track* track, double timeResolution);
+    DDMarlinCED::init(this);                                                                             |
+    _bField = MarlinUtil::getBzAtOrigin();                                                               |    private:
+                                                                                                         |        std::ofstream _GNNfile;
+     _pfo_count = 0;                                                                                     |        int _pfo_count;
+                                                                                                         |        dd4hep::Detector& _detector = dd4hep::Detector::getInstance();
+    _GNNfile.open ("/nfs/dust/ilc/user/mckeownp/Angular_spectra/ILD_ECAL_Angular_Spectra_data/
+                    4jet_photons_angular_spectra.csv");
+}
+    */
+
 void draw(EVENT::MCParticle* mc, std::vector<EVENT::Cluster*> clusters){
     int type = 0;
     int size = 5;
@@ -70,6 +83,8 @@ void PeterProcessor::processEvent(EVENT::LCEvent * event){
             std::cout<<"Barrel Phi angle between flight direction and ECAL normal: "<<phi_angle_barrel<<" rad ("<<phi_angle_barrel*180./M_PI<<" deg)"<<std::endl;
             double theta_angle_barrel = mom.theta();
             std::cout<<"Barrel Theta angle from flight direction: "<<theta_angle_barrel<<" rad ("<<theta_angle_barrel*180./M_PI<<" deg)"<<std::endl;
+            double energy_barrel = mc->getEnergy();
+            std::cout<<"Barrel incident photon energy: "<<energy_barrel<<" (GeV)"<<std::endl;
         }
         else if( hasEndcapHits(clusters) == true &&  hasBarrelHits(clusters) == false  ){
             //same for endcap 
@@ -77,7 +92,10 @@ void PeterProcessor::processEvent(EVENT::LCEvent * event){
             std::cout<<"Endcap Phi angle: "<<phi_angle_endcap<<" rad ("<<phi_angle_endcap*180./M_PI<<" deg)"<<std::endl;            
             double theta_angle_endcap = mom.theta();
             std::cout<<"Endcap Theta angle: "<<theta_angle_endcap<<" rad ("<<theta_angle_endcap*180./M_PI<<" deg)"<<std::endl;
+            double energy_endcap = mc->getEnergy();
+            std::cout<<"Endcap incident photon energy: "<<energy_endcap<<" (GeV)"<<std::endl;
         }
+        else continue;
 
         drawDisplay(this, event, draw, mc, clusters);
     }
