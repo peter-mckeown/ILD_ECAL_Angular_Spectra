@@ -70,6 +70,10 @@ void PeterProcessor::processEvent(EVENT::LCEvent * event){
 
         Vector3D mom( mc->getMomentum() );
 
+        bool Sim_flag = mc -> isCreatedInSimulation();
+        bool Overlay_flag = mc -> isOverlay();
+
+        std::vector<MCParticle*> Parents = mc -> getParents();  
 
         std::cout<<"***PHOTON MOMENTUM***"<<std::endl;
         std::cout<<mom<<std::endl;
@@ -85,15 +89,37 @@ void PeterProcessor::processEvent(EVENT::LCEvent * event){
             std::cout<<"Barrel Theta angle from flight direction: "<<theta_angle_barrel<<" rad ("<<theta_angle_barrel*180./M_PI<<" deg)"<<std::endl;
             double energy_barrel = mc->getEnergy();
             std::cout<<"Barrel incident photon energy: "<<energy_barrel<<" (GeV)"<<std::endl;
+            std::cout<<"Created in Simulation?: " << Sim_flag << std::endl;
+            std::cout<<"Is Overlay?: " << Overlay_flag << std::endl;
+
+            int parent_size = static_cast<int>(Parents.size());
+            if(parent_size > 1) {std::cout<<"More than one parent!"<<std::endl;}
+            else{
+                int Parent_type = Parents[0]->getPDG();
+                std::cout<<"Parent PDG: "<<Parent_type<<std::endl;
+            }
+
         }
         else if( hasEndcapHits(clusters) == true &&  hasBarrelHits(clusters) == false  ){
             //same for endcap 
             double phi_angle_endcap = mom.phi();
             std::cout<<"Endcap Phi angle: "<<phi_angle_endcap<<" rad ("<<phi_angle_endcap*180./M_PI<<" deg)"<<std::endl;            
             double theta_angle_endcap = mom.theta();
+            
+            if(theta_angle_endcap > M_PI/2){ theta_angle_endcap = M_PI - theta_angle_endcap; }
+            
             std::cout<<"Endcap Theta angle: "<<theta_angle_endcap<<" rad ("<<theta_angle_endcap*180./M_PI<<" deg)"<<std::endl;
             double energy_endcap = mc->getEnergy();
             std::cout<<"Endcap incident photon energy: "<<energy_endcap<<" (GeV)"<<std::endl;
+            std::cout<<"Created in Simulation?: " << Sim_flag << std::endl;
+            std::cout<<"Is Overlay?: " << Overlay_flag << std::endl;
+
+            int parent_size = static_cast<int>(Parents.size());
+            if(parent_size > 1) {std::cout<<"More than one parent!"<<std::endl;}
+            else{
+                int Parent_type = Parents[0]->getPDG();
+                std::cout<<"Parent PDG: "<<Parent_type<<std::endl;
+            }
         }
         else continue;
 
