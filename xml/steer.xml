@@ -21,7 +21,7 @@
             /pnfs/desy.de/ilc/prod/ilc/mc-2020/ild/rec/250-SetA/4f_ZZ_hadronic/ILD_l5_o1_v02/v02-02/00015122/000/rv02-02.sv02-02.mILD_l5_o1_v02.E250-SetA.I500062.P4f_zz_h.eL.pR.n000_009.d_rec_00015122_155.slcio
             /pnfs/desy.de/ilc/prod/ilc/mc-2020/ild/rec/250-SetA/4f_ZZ_hadronic/ILD_l5_o1_v02/v02-02/00015122/000/rv02-02.sv02-02.mILD_l5_o1_v02.E250-SetA.I500062.P4f_zz_h.eL.pR.n000_010.d_rec_00015122_21.slcio
         </parameter>
-        <parameter name="MaxRecordNumber" type="int">10</parameter>
+        <parameter name="MaxRecordNumber" type="int">100000</parameter>
         <parameter name="SkipNEvents" type="int">0</parameter>
         <parameter name="SupressCheck" type="bool">false</parameter>
         <parameter name="AllowToModifyEvent" type="bool">false</parameter>
@@ -36,6 +36,6 @@
     </processor>
 
     <processor name="PeterExample" type="PeterProcessor">
-        <parameter name="eventDisplay">true</parameter>
+        <parameter name="eventDisplay">false</parameter>
     </processor>
 </marlin>
