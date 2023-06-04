@@ -25,7 +25,7 @@ PeterProcessor::PeterProcessor() : marlin::Processor("PeterProcessor"), EventDis
 void PeterProcessor::init(){
     marlin::Global::EVENTSEEDER->registerProcessor(this);                                                
     DDMarlinCED::init(this);                                                                                                                                                                                                                                                                                                                                                               
-    _AngSpecfile.open ("/nfs/dust/ilc/user/mckeownp/Angular_spectra/ILD_ECAL_Angular_Spectra_data/4jet_photons_angular_spectra.csv");
+    _AngSpecfile.open ("/nfs/dust/ilc/user/mckeownp/Angular_spectra/ILD_ECAL_Angular_Spectra_data/4jet_photons_angular_spectra_2.csv");
     _AngSpecfile << "Barrel (1)/ Endcap (0) Flag, Sim Flag, Overlay Flag, Phi angle to Norm, Theta angle to Norm, Energy (GeV), Parent PDG\n";
 
 }
@@ -74,6 +74,8 @@ void PeterProcessor::processEvent(EVENT::LCEvent * event){
 
         Vector3D mom( mc->getMomentum() );
 
+        Vector3D mom_pt( mom.x(), mom.y(), 0.0 );
+
         bool Sim_flag = mc -> isCreatedInSimulation();
         bool Overlay_flag = mc -> isOverlay();
 
@@ -87,7 +89,13 @@ void PeterProcessor::processEvent(EVENT::LCEvent * event){
             Vector3D ecalNorm = getBarrelNorm( mom.phi() );
             //std::cout<<"***ECAL NORM***"<<std::endl;
             //std::cout<<ecalNorm<<std::endl;
-            double phi_angle_barrel = std::acos( mom.unit()*ecalNorm );
+
+
+            //double phi_angle_barrel = std::acos( mom.unit()*ecalNorm );
+    
+            // Phi angle is defined in the transverse plane!
+            double phi_angle_barrel = std::acos( mom_pt.unit()*ecalNorm ); 
+
             //std::cout<<"Barrel Phi angle between flight direction and ECAL normal: "<<phi_angle_barrel<<" rad ("<<phi_angle_barrel*180./M_PI<<" deg)"<<std::endl;
             double theta_angle_barrel = mom.theta();
 
