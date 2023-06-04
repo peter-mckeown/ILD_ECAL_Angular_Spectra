@@ -25,7 +25,7 @@ PeterProcessor::PeterProcessor() : marlin::Processor("PeterProcessor"), EventDis
 void PeterProcessor::init(){
     marlin::Global::EVENTSEEDER->registerProcessor(this);                                                
     DDMarlinCED::init(this);                                                                                                                                                                                                                                                                                                                                                               
-    _AngSpecfile.open ("/nfs/dust/ilc/user/mckeownp/Angular_spectra/ILD_ECAL_Angular_Spectra_data/4jet_photons_angular_spectra_2.csv");
+    _AngSpecfile.open ("/nfs/dust/ilc/user/mckeownp/Angular_spectra/ILD_ECAL_Angular_Spectra_data/Tau_pairs_2f_leptonic_eL_pR_photons_angular_spectra.csv");
     _AngSpecfile << "Barrel (1)/ Endcap (0) Flag, Sim Flag, Overlay Flag, Phi angle to Norm, Theta angle to Norm, Energy (GeV), Parent PDG\n";
 
 }

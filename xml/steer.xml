@@ -8,18 +8,19 @@
     </execute>
 
     <global>
-        <!-- some 4 jet files -->
+        <!-- files with leptonic final states. Expect about 50% muons, 50% taus -->
+	<!-- Here using eL, pR -->
         <parameter name="LCIOInputFiles" type="StringVec">
-            /pnfs/desy.de/ilc/prod/ilc/mc-2020/ild/rec/250-SetA/4f_ZZ_hadronic/ILD_l5_o1_v02/v02-02/00015122/000/rv02-02.sv02-02.mILD_l5_o1_v02.E250-SetA.I500062.P4f_zz_h.eL.pR.n000_001.d_rec_00015122_20.slcio
-            /pnfs/desy.de/ilc/prod/ilc/mc-2020/ild/rec/250-SetA/4f_ZZ_hadronic/ILD_l5_o1_v02/v02-02/00015122/000/rv02-02.sv02-02.mILD_l5_o1_v02.E250-SetA.I500062.P4f_zz_h.eL.pR.n000_002.d_rec_00015122_73.slcio
-            /pnfs/desy.de/ilc/prod/ilc/mc-2020/ild/rec/250-SetA/4f_ZZ_hadronic/ILD_l5_o1_v02/v02-02/00015122/000/rv02-02.sv02-02.mILD_l5_o1_v02.E250-SetA.I500062.P4f_zz_h.eL.pR.n000_003.d_rec_00015122_178.slcio
-            /pnfs/desy.de/ilc/prod/ilc/mc-2020/ild/rec/250-SetA/4f_ZZ_hadronic/ILD_l5_o1_v02/v02-02/00015122/000/rv02-02.sv02-02.mILD_l5_o1_v02.E250-SetA.I500062.P4f_zz_h.eL.pR.n000_004.d_rec_00015122_84.slcio
-            /pnfs/desy.de/ilc/prod/ilc/mc-2020/ild/rec/250-SetA/4f_ZZ_hadronic/ILD_l5_o1_v02/v02-02/00015122/000/rv02-02.sv02-02.mILD_l5_o1_v02.E250-SetA.I500062.P4f_zz_h.eL.pR.n000_005.d_rec_00015122_192.slcio
-            /pnfs/desy.de/ilc/prod/ilc/mc-2020/ild/rec/250-SetA/4f_ZZ_hadronic/ILD_l5_o1_v02/v02-02/00015122/000/rv02-02.sv02-02.mILD_l5_o1_v02.E250-SetA.I500062.P4f_zz_h.eL.pR.n000_006.d_rec_00015122_200.slcio
-            /pnfs/desy.de/ilc/prod/ilc/mc-2020/ild/rec/250-SetA/4f_ZZ_hadronic/ILD_l5_o1_v02/v02-02/00015122/000/rv02-02.sv02-02.mILD_l5_o1_v02.E250-SetA.I500062.P4f_zz_h.eL.pR.n000_007.d_rec_00015122_87.slcio
-            /pnfs/desy.de/ilc/prod/ilc/mc-2020/ild/rec/250-SetA/4f_ZZ_hadronic/ILD_l5_o1_v02/v02-02/00015122/000/rv02-02.sv02-02.mILD_l5_o1_v02.E250-SetA.I500062.P4f_zz_h.eL.pR.n000_008.d_rec_00015122_101.slcio
-            /pnfs/desy.de/ilc/prod/ilc/mc-2020/ild/rec/250-SetA/4f_ZZ_hadronic/ILD_l5_o1_v02/v02-02/00015122/000/rv02-02.sv02-02.mILD_l5_o1_v02.E250-SetA.I500062.P4f_zz_h.eL.pR.n000_009.d_rec_00015122_155.slcio
-            /pnfs/desy.de/ilc/prod/ilc/mc-2020/ild/rec/250-SetA/4f_ZZ_hadronic/ILD_l5_o1_v02/v02-02/00015122/000/rv02-02.sv02-02.mILD_l5_o1_v02.E250-SetA.I500062.P4f_zz_h.eL.pR.n000_010.d_rec_00015122_21.slcio
+            /pnfs/desy.de/ilc/prod/ilc/mc-2020/ild/rec/250-SetA/2f_leptonic_eL_pR/ILD_l5_o1_v02/v02-02/00015167/000/rv02-02.sv02-02.mILD_l5_o1_v02.E250-SetA.I500006.P2f_z_l.eL.pR.n000_001.d_rec_00015167_13.slcio
+            /pnfs/desy.de/ilc/prod/ilc/mc-2020/ild/rec/250-SetA/2f_leptonic_eL_pR/ILD_l5_o1_v02/v02-02/00015167/000/rv02-02.sv02-02.mILD_l5_o1_v02.E250-SetA.I500006.P2f_z_l.eL.pR.n000_002.d_rec_00015167_91.slcio
+            /pnfs/desy.de/ilc/prod/ilc/mc-2020/ild/rec/250-SetA/2f_leptonic_eL_pR/ILD_l5_o1_v02/v02-02/00015167/000/rv02-02.sv02-02.mILD_l5_o1_v02.E250-SetA.I500006.P2f_z_l.eL.pR.n000_003.d_rec_00015167_393.slcio
+            /pnfs/desy.de/ilc/prod/ilc/mc-2020/ild/rec/250-SetA/2f_leptonic_eL_pR/ILD_l5_o1_v02/v02-02/00015167/000/rv02-02.sv02-02.mILD_l5_o1_v02.E250-SetA.I500006.P2f_z_l.eL.pR.n000_004.d_rec_00015167_207.slcio
+            /pnfs/desy.de/ilc/prod/ilc/mc-2020/ild/rec/250-SetA/2f_leptonic_eL_pR/ILD_l5_o1_v02/v02-02/00015167/000/rv02-02.sv02-02.mILD_l5_o1_v02.E250-SetA.I500006.P2f_z_l.eL.pR.n000_005.d_rec_00015167_121.slcio
+            /pnfs/desy.de/ilc/prod/ilc/mc-2020/ild/rec/250-SetA/2f_leptonic_eL_pR/ILD_l5_o1_v02/v02-02/00015167/000/rv02-02.sv02-02.mILD_l5_o1_v02.E250-SetA.I500006.P2f_z_l.eL.pR.n000_006.d_rec_00015167_200.slcio
+            /pnfs/desy.de/ilc/prod/ilc/mc-2020/ild/rec/250-SetA/2f_leptonic_eL_pR/ILD_l5_o1_v02/v02-02/00015167/000/rv02-02.sv02-02.mILD_l5_o1_v02.E250-SetA.I500006.P2f_z_l.eL.pR.n000_007.d_rec_00015167_226.slcio
+            /pnfs/desy.de/ilc/prod/ilc/mc-2020/ild/rec/250-SetA/2f_leptonic_eL_pR/ILD_l5_o1_v02/v02-02/00015167/000/rv02-02.sv02-02.mILD_l5_o1_v02.E250-SetA.I500006.P2f_z_l.eL.pR.n000_008.d_rec_00015167_198.slcio
+            /pnfs/desy.de/ilc/prod/ilc/mc-2020/ild/rec/250-SetA/2f_leptonic_eL_pR/ILD_l5_o1_v02/v02-02/00015167/000/rv02-02.sv02-02.mILD_l5_o1_v02.E250-SetA.I500006.P2f_z_l.eL.pR.n000_009.d_rec_00015167_340.slcio
+            /pnfs/desy.de/ilc/prod/ilc/mc-2020/ild/rec/250-SetA/2f_leptonic_eL_pR/ILD_l5_o1_v02/v02-02/00015167/000/rv02-02.sv02-02.mILD_l5_o1_v02.E250-SetA.I500006.P2f_z_l.eL.pR.n000_010.d_rec_00015167_208.slcio
         </parameter>
         <parameter name="MaxRecordNumber" type="int">100000</parameter>
         <parameter name="SkipNEvents" type="int">0</parameter>
